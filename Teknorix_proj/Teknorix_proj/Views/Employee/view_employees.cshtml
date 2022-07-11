@@ -1,0 +1,81 @@
+﻿@using System.Data;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Form</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+
+    <fieldset>
+        <legend>Add Employee</legend>
+        <div>
+            <label for="CompanyName" class="form-label">First Name:</label>
+            <input type="text" class="form-control" id="txtFname" name="FirstName" value="" />
+        </div>
+        <div>
+            <label for="ContactName" class="form-label">Last Name:</label>
+            <input type="text" class="form-control" id="txtLname" name="LastName" value="" />
+        </div>
+        <div>
+            <label for="EmployeeGender" class="form-label">Gender</label>
+            <input type="text" class="form-control" id="txtGender" name="Gender" value="" />
+        </div>
+        <div>
+            <label for="EmployeeAddress" class="form-label">Address</label>
+            <input type="text" class="form-control" id="txtAddress" name="Address" value="" />
+        </div>
+        <div>
+            <label for="EmployeePhone" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="txtPhoneNumber" name="PhoneNumber" value="" />
+        </div>
+        <div>
+            <label for="EmployeeMobile" class="form-label">Mobile Number</label>
+            <input type="text" class="form-control" id="txtMobileNumber" name="MobileNumber" value="" />
+        </div>
+        <div>
+            <label for="EmployeeDeignation" class="form-label">Deignation</label>
+            <select class="form-control" id="Designation" name="Deignation">
+                <option value="1">Trainee Software Engineer</option>
+                <option value="2">Software Engineer</option>
+                <option value="3">Senior Software Engineer</option>
+                <option value="4">Project Lead</option>
+                <option value="5">Project Manager</option>
+            </select>
+        </div>
+        <div>
+            <label>&nbsp;</label>
+            <input type="submit" class="btn-primary" id="btnSave" value="Submit" class="submit" />
+        </div>
+    </fieldset>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    });
+
+    $("#btnSave").click(function () {
+        var _emp = {
+            Fname: $("#txtFname").val(),
+            Lname: $("#txtLname").val(),
+            Gender: $("#txtGender").val(),
+            Address: $("#txtAddress").val(),
+            PhoneNumber: $("#txtPhoneNumber").val(),
+            MobileNumber: $("#txtMobileNumber").val(),
+            Designation: $("#Designation").val()
+        };
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/Employee/Save",
+            traditional: true,
+            data: JSON.stringify(_emp),
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                _emp = jQuery.parseJSON(data);
+                alert("saved");
+            }
+        });
+    });
+</script>

@@ -1,0 +1,90 @@
+﻿@model Teknorix_proj.Models.Employee
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Employee</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.emp_fname)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.emp_fname)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.emp_lname)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.emp_lname)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.emp_gender)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.emp_gender)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.emp_address)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.emp_address)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.emp_phone_no)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.emp_phone_no)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.emp_mobile_no)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.emp_mobile_no)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.emp_desgn_id)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.emp_desgn_id)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.dept_id)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.dept_id)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.emp_id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

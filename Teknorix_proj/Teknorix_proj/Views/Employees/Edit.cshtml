@@ -1,0 +1,191 @@
+﻿@model Teknorix_proj.Models.Employee
+
+@*@{
+        Layout = null;
+    }*@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="container">
+                    <div class="jumbotron">
+                        <h1>Teknorix Technologies </h1>
+                        <p>Teknorix is a global software development company based in India. We build amazing software solutions to help your business scale greater heights.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
+                    <li> @Html.ActionLink("View All Employees", "Index", null, null, new { @class = "btn btn-primary" })</li>
+                    <li> @Html.ActionLink("Add New Employee", "Create", null, null, new { @class = "btn btn-primary" })</li>
+
+                </ul>
+            </div>
+
+            <div class="col-sm-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="text-align:center">
+                        <img src="~/Content/Images/img_avatar1.png" id="EmpImg" class="media-object"><strong> Update Emplyee Details </strong>
+                    </div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="#">
+                                <div class="row">
+                                    <div class="form-group">
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.emp_id)
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-2">
+                                            <label>First Name: </label>
+                                            @*@Html.LabelFor(model => model.emp_fname, htmlAttributes: new { @class = "control-label" })*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4">
+                                            @Html.EditorFor(model => model.emp_fname, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.emp_fname, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-2">
+                                            <label>Last Name: </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4">
+                                            @Html.EditorFor(model => model.emp_lname, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.emp_lname, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-2">
+                                            <label>Gender: </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4">
+                                            @Html.EditorFor(model => model.emp_gender, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.emp_gender, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-2">
+                                            <label>Addrerss: </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4">
+                                            @Html.EditorFor(model => model.emp_address, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.emp_address, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-2">
+                                            <label>Phone No: </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4">
+                                            @Html.EditorFor(model => model.emp_phone_no, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.emp_phone_no, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-2">
+                                            <label>Mobile No: </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4">
+                                            @Html.EditorFor(model => model.emp_mobile_no, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.emp_mobile_no, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-2">
+                                            <label>Designation: </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4">
+                                            @Html.DropDownList("emp_desgn_id", new SelectList(ViewBag.DesgnList, "Desgn_id", "Desgn_name"), new { @class = "form-control" })
+
+                                            @*<select asp-for="DesgnID" class="form-control" asp-items="@(new SelectList(ViewBag.DesgnList,"Desgn_id","Desgn_name"))"></select>*@
+
+                                            @*@Html.DropDownList("emp_desgn_id", new List<SelectListItem>
+                                                {
+                                                new SelectListItem { Text = "Trainee Software Engineer", Value = "1"},
+                                                new SelectListItem { Text = "Software Engineer", Value = "2"},
+                                                new SelectListItem { Text = "Project Lead", Value = "3"},
+                                                 new SelectListItem { Text = "Senior Software Engineer", Value = "4"},
+                                                  new SelectListItem { Text = "Project Manager", Value = "5"}
+                                                }, "Select Designation", new { @class = "form-control" })*@
+                                            @*@Html.EnumDropDownListFor(model => model.Designations, new { htmlAttributes = new { @class = "form-control", @onkeypress = "ValidateDepartments();" } })
+                                                @Html.ValidationMessageFor(model => model.Designations, "", new { @class = "text-danger" })*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-2">
+                                            <label>Department: </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4">
+                                            @Html.DropDownList("dept_id", new SelectList(ViewBag.DeptList, "dept_id", "dept_name"), new { @class = "form-control" })
+
+                                            @*@Html.DropDownList("dept_id", new List<SelectListItem>
+                                                {
+                                                new SelectListItem { Text = "Application Developer", Value = "1"},
+                                                new SelectListItem { Text = "IT Management", Value = "2"},
+                                                new SelectListItem { Text = "Project Manager", Value = "3"},
+                                                 new SelectListItem { Text = "IT Security", Value = "4"},
+                                                  new SelectListItem { Text = "CTO", Value = "5"}
+                                                }, "Select Department", new { @class = "form-control" })*@
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top:2%;">
+                                    <div class="col-md-offset-6 col-md-10">
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                        @Html.ActionLink("Delete", "Delete", null, new { @id = Model.emp_id }, new { @class = "btn btn-danger" })
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</body>
+</html>

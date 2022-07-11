@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teknorix_proj", "Teknorix_proj\Teknorix_proj.csproj", "{89CCDE65-4F3B-4905-8839-A411F589B1C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89CCDE65-4F3B-4905-8839-A411F589B1C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89CCDE65-4F3B-4905-8839-A411F589B1C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89CCDE65-4F3B-4905-8839-A411F589B1C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89CCDE65-4F3B-4905-8839-A411F589B1C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {63B8C556-BBE5-4217-9891-9AA607D3E812}
+	EndGlobalSection
+EndGlobal

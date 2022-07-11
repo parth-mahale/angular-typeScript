@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Department_Tbl">
+    <Key>
+      <PropertyRef Name="dept_id" />
+    </Key>
+    <Property Name="dept_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="dept_name" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Designation_Tbl">
+    <Key>
+      <PropertyRef Name="Desgn_id" />
+    </Key>
+    <Property Name="Desgn_id" Type="int" Nullable="false" />
+    <Property Name="Desgn_name" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee_Tbl">
+    <Key>
+      <PropertyRef Name="emp_id" />
+    </Key>
+    <Property Name="emp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="emp_fname" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="emp_lname" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="emp_gender" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="emp_address" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="emp_phone_no" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="emp_mobile_no" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="emp_desgn_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="dept_id" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK__Employee__dept_i__5DCAEF64">
+    <End Role="Department_Tbl" Type="Self.Department_Tbl" Multiplicity="0..1" />
+    <End Role="Employee_Tbl" Type="Self.Employee_Tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department_Tbl">
+        <PropertyRef Name="dept_id" />
+      </Principal>
+      <Dependent Role="Employee_Tbl">
+        <PropertyRef Name="dept_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelsStoreContainer">
+    <EntitySet Name="Department_Tbl" EntityType="Self.Department_Tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Designation_Tbl" EntityType="Self.Designation_Tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee_Tbl" EntityType="Self.Employee_Tbl" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Employee__dept_i__5DCAEF64" Association="Self.FK__Employee__dept_i__5DCAEF64">
+      <End Role="Department_Tbl" EntitySet="Department_Tbl" />
+      <End Role="Employee_Tbl" EntitySet="Employee_Tbl" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

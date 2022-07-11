@@ -1,0 +1,216 @@
+﻿@*@model IEnumerable<Teknorix_proj.Models.Employee>*@
+
+@*@{
+        Layout = null;
+    }*@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="~/Content/Style.css">
+
+    <style>
+        .nav > li > a:hover, .nav > li > a:focus {
+            text-decoration: none;
+            background-color: #337ab7;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="container">
+                <div class="jumbotron">
+                    <h1>Teknorix Technologies </h1>
+                    <p>Teknorix is a global software development company based in India. We build amazing software solutions to help your business scale greater heights.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" ng-app="app" ng-controller="EmployeeDtsController">
+        <div class="row" id="body-row">
+
+            @*<p>{{model | json}}</p>*@
+            <div class="col-sm-2">
+                <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
+                    @Html.ActionLink("Add New Details", "Create", null, null, new { @class = "btn btn-primary" })
+                   
+                </ul>
+            </div>
+            <div class="col-lg-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading"> <img src="~/Content/Images/img_avatar1.png" id="EmpImg" class="media-object"> <strong>Employee Details</strong></div>
+                    <div class="panel-body">
+
+                        <div style="font-family:Arial">
+                            <p>
+                                @*@using (@Html.BeginForm("Index", "Employees", FormMethod.Get))
+            {*@
+                                <b>Search By:</b>
+                                @Html.RadioButton("searchBy", "Firstname", true)<text>First name</text>
+                                @Html.RadioButton("searchBy", "LastName")<text>Last Name</text>
+                                <br />
+                                @Html.TextBox("search")
+                                <input type="submit" onclick="SearchDtls()" value="search" />
+                                @*}*@
+                            </p>
+                            <table id="view-table" class="table table-hover table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <label>First Name </label>
+                                        </th>
+                                        <th>
+                                            <label>Last Name </label>
+                                            @*@Html.DisplayNameFor(model => model.emp_lname)*@
+                                        </th>
+                                        <th>
+                                            <label>Gender </label>
+                                        </th>
+                                        <th>
+                                            <label>Addrerss </label>
+                                        </th>
+                                        <th>
+                                            <label>Phone No </label>
+                                        </th>
+                                        <th>
+                                            <label>Mobile No </label>
+                                        </th>
+                                        <th>
+                                            <label>Designation </label>
+                                        </th>
+                                        <th>
+                                            <label>Department </label>
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @*@foreach (var item in Model)
+                {*@
+                                    <tr ng-repeat="item in model.data">
+                                        <td>
+                                            @*@Html.DisplayFor(modelItem => item.emp_fname)*@
+                                            {{item.emp_fname}}
+                                        </td>
+                                        <td>
+                                            @* @Html.DisplayFor(modelItem => item.emp_lname)*@
+                                            {{item.emp_lname}}
+                                        </td>
+                                        <td>
+                                            @*@Html.DisplayFor(modelItem => item.emp_gender)*@
+                                            {{item.emp_gender}}
+                                        </td>
+                                        <td>
+                                            @*@Html.DisplayFor(modelItem => item.emp_address)*@
+                                            {{item.emp_address}}
+                                        </td>
+                                        <td>
+                                            @*@Html.DisplayFor(modelItem => item.emp_phone_no)*@
+                                            {{item.emp_phone_no}}
+                                        </td>
+                                        <td>
+                                            @*  @Html.DisplayFor(modelItem => item.emp_mobile_no)*@
+                                            {{item.emp_mobile_no}}
+                                        </td>
+                                        <td>
+                                            @*  @Html.DisplayFor(modelItem => item.emp_desgn_id)*@
+                                            {{item.emp_desgn_id}}
+                                        </td>
+                                        <td>
+                                            @*  @Html.DisplayFor(modelItem => item.dept_id)*@
+                                            {{item.dept_id}}
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("Edit", "Employees")/?id = {{item.emp_id}}" class="btn btn-warning">Edit</a>
+                                            @* @Html.ActionLink("Edit", "Edit", null, new { id = {  item.emp_id  } }, new { @class = "btn btn-warning" })*@
+                                            @*@Html.ActionLink("Details", "Details", new   { id = item.emp_id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.emp_id })*@
+                                        </td>
+                                    </tr>
+                                    @*}*@
+
+                                    <tr ng-if="model.emps.lenght == 0">
+                                        <td colspan="8" class="text-center">no record</td>
+                                    </tr>
+                                    <tr ng-if="states.showEmpForm">
+                                        <td>
+                                            <input type="text" ng-model="new.emp.emp_fname" class="form-control" placeholder="first name" />
+                                        </td>
+                                        <td>
+                                            <input type="text" ng-model="new.emp.emp_lname"  class=" form-control" placeholder="Last name" />
+                                        </td>
+                                        <td>
+                                            <input type="text" ng-model="new.emp.emp_gender"  class=" form-control" placeholder="Gender" />
+                                        </td>
+                                        <td>
+                                            <input type="text" ng-model="new.emp.emp_address"  class=" form-control" placeholder="Address" />
+                                        </td>
+                                        <td>
+                                            <input type="text" ng-model="new.emp.emp_phone_no"  class=" form-control" placeholder="Phone no" />
+                                        </td>
+                                        <td>
+                                            <input type="text" ng-model="new.emp.emp_mobile_no"  class=" form-control" placeholder="Mobile No" />
+                                        </td>
+                                        <td>
+                                            <input type="text" ng-model="new.emp.emp_desgn_id"  class=" form-control" placeholder="Dsg" />
+                                        </td>
+                                        <td>
+                                            <input type="text" ng-model="new.emp.dept_id"  class=" form-control" placeholder="Dept name" />
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" ng-click="addEmps()">Add</button>
+                                            <button type="button" class="btn btn-default" ng-click="showEmpForms(false)">cancel</button>
+                                        </td>
+                                    </tr>
+                                    @*<tr>
+                                        <td colspan="8">{{new.emp | json}}</td>
+                                    </tr>*@
+                                </tbody>
+                            </table>
+                            <a ng-click="showEmpForms(true)" class="btn btn-primary">Add Employee</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-sm-1">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        function SearchDtls() {
+            var searchBy;
+            var search;
+            var Model = new Object();
+            Model.searchBy = $('#searchBy').val();
+            Model.search = $('#search').val();
+            $.ajax({
+                type: "post",
+                url: "/Employees/searchDtls",
+                data: Model,
+                datatype: "json",
+                cache: false,
+
+                success: function (data) {
+                    window.location.href = newUrl;
+                    //alert("You Multiple Data Passed Successfully");
+                },
+
+                error: function (xhr) {
+                    window.location.href = newUrl;
+                    //alert('No Valid Data');
+
+                }
+            });
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+﻿@model List<Teknorix_proj.Models.EmployeeModel>
+@*@using System.Data;*@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Form</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="container">
+                    <div class="jumbotron">
+                        <h1>Teknorix Technologies </h1>
+                        <p>Teknorix is a global software development company based in India. We build amazing software solutions to help your business scale greater heights.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
+                    <li> <a href="/Employee/AddDetails" class="btn btn-primary">Add New Employee</a></li>
+                    <li> <a href="/Employee/View" class="btn btn-primary"> <strong>View All Employees</strong></a></li>
+                    @*<li><a href="#section3">Section 3</a></li>*@
+                </ul>
+            </div>
+            <div class="col-sm-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="text-align:center"> <img src="~/Content/Images/img_avatar1.png" id="EmpImg" class="media-object"><strong> Update Emplyee Details </strong></div>
+                    <div class="panel-body">
+                        @foreach (var item in Model)
+                        {
+                            <div class="row" id="row-edits">
+                                <div class="col-sm-1">
+                                    <label for="First name" class="form-label">First Name:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+
+                                        @Html.TextBoxFor(m => item.Fname, new { @id = "Fname", @class = "form-control", @onkeypress = "ValidateFname();" })
+                                        @Html.TextBoxFor(m => item.EmpID, new { Type = "hidden", @id = "EmpID", @class = "form-control" })
+                                        <span id="lblError1" style="color:red"></span>
+
+                                        @*<input type="text" class="form-control" id="txtFname" name="FirstName" value="" />*@
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <label for="LastName" class="form-label">Last Name:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+
+                                        @Html.TextBoxFor(m => item.Lname, new { @id = "Lname", @class = "form-control", @onkeypress = "ValidateLname();" })
+                                        <span id="lblError2" style="color:red"></span>
+
+                                        @*@Html.ValidationMessageFor(m => item.Lname, "", new { @class = "text-danger" })*@
+                                        @*<input type="text" class="form-control" id="txtLname" name="LastName" value="" />*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="row-edits">
+                                <div class="col-sm-1">
+                                    <label for="EmployeeGender" class="form-label">Gender:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => item.Gender, new { @id = "Gender", @class = "form-control", @onkeypress = "ValidateGender();" })
+                                    <span id="lblError3" style="color:red"></span>
+                                    @*<input type="text" class="form-control" id="txtGender" name="Gender" value="" />*@
+                                </div>
+
+                                <div class="col-sm-1">
+                                    <label for="EmployeeAddress" class="form-label">Address:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => item.Address, new { @id = "Address", @class = "form-control", @onkeypress = "ValidateAddress();" })
+                                        <span id="lblError4" style="color:red"></span>
+                                        @*<input type="text" class="form-control" id="txtAddress" name="Address" value="" />*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="row-edits">
+                                <div class="col-sm-1">
+                                    <label for="EmployeePhone" class="form-label">Phone Number:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => item.PhoneNumber, new { @id = "PhoneNumber", @class = "form-control", @onkeypress = "ValidatePhoneNumber();" })
+                                    <span id="lblError5" style="color:red"></span>
+                                    @*<input type="text" class="form-control" id="txtPhoneNumber" name="PhoneNumber" value="" />*@
+                                </div>
+
+                                <div class="col-sm-1">
+                                    <label for="EmployeeMobile" class="form-label">Mobile Number:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => item.MobileNumber, new { @id = "MobileNo", @class = "form-control", @onkeypress = "ValidateMobileNumber();" })
+                                        <span id="lblError6" style="color:red"></span>
+                                        @*<input type="text" class="form-control" id="txtMobileNumber" name="MobileNumber" value="" />*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="row-edits">
+                                <div class="col-sm-1">
+                                    <label for="EmployeeDesgn" class="form-label">Deignation</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        @*@Html.EnumDropDownListFor(m => item.Designations, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(m => item.Designations, "", new { @class = "text-danger" })*@
+
+                                        <select class="form-control" id="Designation" name="Designation">
+                                            <option value="1">Trainee Software Engineer</option>
+                                            <option value="2">Software Engineer</option>
+                                            <option value="3">Senior Software Engineer</option>
+                                            <option value="4">Project Lead</option>
+                                            <option value="5">Project Manager</option>>>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <label for="EmployeeDept" class="form-label">Department</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        @*@Html.EnumDropDownListFor(m => item.Designations, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(m => item.Designations, "", new { @class = "text-danger" })*@
+
+                                        <select class="form-control" id="Department" name="Department">
+                                            <option value="1">CTO</option>
+                                            <option value="2">Application Developer</option>
+                                            <option value="3">IT Management</option>
+                                            <option value="4"> Prject Manager</option>
+                                            <option value="5">IT Security</option>>>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12" style="text-align:center;">
+                                    <input type="submit" class="btn btn-success" id="btnUpdate" value="Update" class="submit" />
+                                    <input type="submit" class="btn btn-warning" id="btnDelete" value="Delete" class="Delete" />
+
+                                    @*@Html.ActionLink("Delete", "DeleteEmpByID", new { Id = item.EmpID }, new { @class = "btn btn-warning" })*@
+                                </div>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+
+        </div>
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+    });
+
+    $("#btnDelete").click(function () {
+
+        var _emp =
+        {
+            EmpID: $("#EmpID").val(),
+        };
+       
+        if (confirm("Are you sure you want to delete this?"))
+        {
+            var _emp =
+            {
+                EmpID: $("#EmpID").val(),
+            };
+
+           $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/Employee/DeleteDtls",
+            traditional: true,
+            data: JSON.stringify(_emp),
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                _emp = jQuery.parseJSON(data);
+                alert("Record deleted successfully");
+               window.location.href = '@Url.Action("View", "Employee")';
+            }
+        });
+        }
+    else {
+            return false;
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    function ValidateFname() {
+        var Fname = document.getElementById("Fname").value;
+        var lblError1 = document.getElementById("lblError1");
+        lblError1.innerHTML = "";
+        var expr = /^[a-zA-Z ]+$/;
+        if (!expr.test(Fname)) {
+            lblError1.innerHTML = "Invalid first name";
+        }
+    }
+    function ValidateLname() {
+        var Lname = document.getElementById("Lname").value;
+        var lblError2 = document.getElementById("lblError2");
+        lblError2.innerHTML = "";
+        var expr = /^[a-zA-Z ]+$/;
+        if (!expr.test(Lname)) {
+            lblError2.innerHTML = "Invalid last name";
+        }
+    }
+    function ValidateGender() {
+        var Gender = document.getElementById("Gender").value;
+        var lblError3 = document.getElementById("lblError3");
+        lblError3.innerHTML = "";
+        var expr = /^[a-zA-Z ]+$/;
+        if (!expr.test(Gender)) {
+            lblError3.innerHTML = "Invalid gender";
+        }
+    }
+    function ValidateAddress() {
+        var Address = document.getElementById("Address").value;
+        var lblError4 = document.getElementById("lblError4");
+        lblError4.innerHTML = "";
+        var addr = /^[a-zA-Z0-9\s,.'-]{1,}$/;
+        if (!addr.test(Address)) {
+            lblError4.innerHTML = "Invalid addres";
+        }
+    }
+    function ValidatePhoneNumber() {
+        var PhoneNumber = document.getElementById("PhoneNumber").value;
+        var lblError5 = document.getElementById("lblError5");
+        lblError5.innerHTML = "";
+        var phoneNo = /^[789]\d{8}$/;
+        if (!phoneNo.test(PhoneNumber)) {
+            lblError5.innerHTML = "Invalid phone number";
+        }
+    }
+    function ValidateMobileNumber() {
+        var MobileNumber = document.getElementById("MobileNo").value;
+        var lblError6 = document.getElementById("lblError6");
+        lblError6.innerHTML = "";
+        var phoneNo = /^[789]\d{8}$/;
+        if (!phoneNo.test(MobileNumber)) {
+            lblError6.innerHTML = "Invalid mobile number";
+        }
+    }
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+    });
+
+    $("#btnUpdate").click(function () {
+        var _emp = {
+            EmpID: $("#EmpID").val(),
+            Fname: $("#Fname").val(),
+            Lname: $("#Lname").val(),
+            Gender: $("#Gender").val(),
+            Address: $("#Address").val(),
+            PhoneNumber: $("#PhoneNumber").val(),
+            MobileNumber: $("#MobileNo").val(),
+            Designation: $("#Designation").val(),
+            Department: $("#Department").val()
+        };
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/Employee/UpdateDtls",
+            traditional: true,
+            data: JSON.stringify(_emp),
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                _emp = jQuery.parseJSON(data);
+                alert("saved");
+               window.location.href = '@Url.Action("View", "Employee")';
+            }
+        });
+    });
+</script>

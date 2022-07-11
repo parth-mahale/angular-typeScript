@@ -1,0 +1,254 @@
+﻿
+@model Teknorix_proj.Models.EmployeeModel
+@{
+    ViewBag.Title = "Add Employee";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Form</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="container">
+                    <div class="jumbotron">
+                        <h1>Teknorix Technologies </h1>
+                        <p>Teknorix is a global software development company based in India. We build amazing software solutions to help your business scale greater heights.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
+                    <li> <a href="/Employee/View" class="btn btn-primary">View All Employees</a></li>
+                    @*<li><a href="#section3">Section 3</a></li>*@
+                </ul>
+            </div>
+            <div class="col-sm-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="text-align:center"> <img src="~/Content/Images/img_avatar1.png" id="EmpImg" class="media-object"> <strong>Add New Emplyee Details</strong></div>
+                    <div class="panel-body">
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                            @*@foreach (var item in Model)
+                                {*@
+                            <div class="row" id="row-edits">
+                                <div class="col-sm-2">
+                                    <label for="First name" class="form-label">First Name:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.Fname, new { htmlAttributes = new { @class = "form-control", @onkeypress = "ValidateFname();" } })
+                                        @Html.ValidationMessageFor(model => model.Fname, "", new { @class = "text-danger" })
+                                        <span id="lblError1" style="color:red"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label for="LastName" class="form-label">Last Name:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+
+                                        @Html.EditorFor(model => model.Lname, new { htmlAttributes = new { @class = "form-control", @onkeypress = "ValidateLname();" } })
+                                        @Html.ValidationMessageFor(model => model.Lname, "", new { @class = "text-danger" })
+                                        <span id="lblError2" style="color:red"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" id="row-edits">
+                                <div class="col-sm-2">
+                                    <label for="EmployeeGender" class="form-label">Gender:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control", @onkeypress = "ValidateGender();" } })
+                                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                        <span id="lblError3" style="color:red"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label for="EmployeeAddress" class="form-label">Address:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @onkeypress = "ValidateAddress();" } })
+                                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                        <span id="lblError4" style="color:red"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" id="row-edits">
+                                <div class="col-sm-2">
+                                    <label for="EmployeePhone" class="form-label">Phone Number:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @onkeypress = "ValidatePhoneNumber();" } })
+                                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                        <span id="lblError5" style="color:red"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label for="EmployeeMobile" class="form-label">Mobile Number:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control", @onkeypress = "ValidateMobileNumber();" } })
+                                        @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                                        <span id="lblError6" style="color:red"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" id="row-edits">
+                                <div class="col-sm-2">
+                                    <label for="EmployeeDeignation" class="form-label">Designation:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        @Html.EnumDropDownListFor(model => model.Designations, new { htmlAttributes = new { @class = "form-control", @onkeypress = "ValidateDesignations();" } })
+                                        @Html.ValidationMessageFor(model => model.Designations, "", new { @class = "text-danger" })
+                                        <span id="lblError7" style="color:red"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label for="EmployeDepartment" class="form-label">Department:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        @Html.EnumDropDownListFor(model => model.Departments, new { htmlAttributes = new { @class = "form-control", @onkeypress = "ValidateDepartments();" } })
+                                        @Html.ValidationMessageFor(model => model.Departments, "", new { @class = "text-danger" })
+                                        <span id="lblError8" style="color:red"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+
+
+                                @*<select class="form-control" id="Designation" name="Deignation">
+                                        <option value="1">Trainee Software Engineer</option>
+                                        <option value="2">Software Engineer</option>
+                                        <option value="3">Senior Software Engineer</option>
+                                        <option value="4">Project Lead</option>
+                                        <option value="5">Project Manager</option>
+                                    </select>*@
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12" style="text-align:center;">
+                                    <input type="submit" class="btn btn-success" id="btnSave" value="Submit" class="submit" />.
+                                </div>
+                            </div>
+
+
+                        }
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    function ValidateFname() {
+        var Fname = document.getElementById("Fname").value;
+        var lblError1 = document.getElementById("lblError1");
+        lblError1.innerHTML = "";
+        var expr = /^[a-zA-Z ]+$/;
+        if (!expr.test(Fname)) {
+            lblError1.innerHTML = "Invalid first name";
+        }
+    }
+    function ValidateLname() {
+        var Lname = document.getElementById("Lname").value;
+        var lblError2 = document.getElementById("lblError2");
+        lblError2.innerHTML = "";
+        var expr = /^[a-zA-Z ]+$/;
+        if (!expr.test(Lname)) {
+            lblError2.innerHTML = "Invalid last name";
+        }
+    }
+    function ValidateGender() {
+        var Gender = document.getElementById("Gender").value;
+        var lblError3 = document.getElementById("lblError3");
+        lblError3.innerHTML = "";
+        var expr = /^[a-zA-Z ]+$/;
+        if (!expr.test(Gender)) {
+            lblError3.innerHTML = "Invalid gender";
+        }
+    }
+    function ValidateAddress() {
+        var Address = document.getElementById("Address").value;
+        var lblError4 = document.getElementById("lblError4");
+        lblError4.innerHTML = "";
+        var addr = /^[a-zA-Z0-9\s,.'-]{1,}$/;
+        if (!addr.test(Address)) {
+            lblError4.innerHTML = "Invalid addres";
+        }
+    }
+    function ValidatePhoneNumber() {
+        var PhoneNumber = document.getElementById("PhoneNumber").value;
+        var lblError5 = document.getElementById("lblError5");
+        lblError5.innerHTML = "";
+        var phoneNo = /^[789]\d{8}$/;
+        if (!phoneNo.test(PhoneNumber)) {
+            lblError5.innerHTML = "Invalid phone number";
+        }
+    }
+    function ValidateMobileNumber() {
+        var MobileNumber = document.getElementById("MobileNumber").value;
+        var lblError6 = document.getElementById("lblError6");
+        lblError6.innerHTML = "";
+        var mobileNo = /^[789]\d{8}$/;
+        if (!mobileNo.test(MobileNumber)) {
+            lblError6.innerHTML = "Invalid mobile number";
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    });
+
+    $("#btnSave").click(function () {
+        var _emp = {
+            Fname: $("#Fname").val(),
+            Lname: $("#Lname").val(),
+            Gender: $("#Gender").val(),
+            Address: $("#Address").val(),
+            PhoneNumber: $("#PhoneNumber").val(),
+            MobileNumber: $("#MobileNumber").val(),
+            Designation: $("#Designations").val(),
+            Department: $("#Departments").val()
+        };
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/Employee/Save",
+            traditional: true,
+            data: JSON.stringify(_emp),
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                _emp = jQuery.parseJSON(data);
+                //window.location.href = /Employee/View;
+                alert("saved");
+              
+            }
+        });
+    });
+</script>

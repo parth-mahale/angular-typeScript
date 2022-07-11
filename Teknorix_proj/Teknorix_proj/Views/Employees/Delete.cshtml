@@ -1,0 +1,173 @@
+﻿@model Teknorix_proj.Models.Employee
+
+@*@{
+        Layout = null;
+    }*@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="container">
+                    <div class="jumbotron">
+                        <h1>Teknorix Technologies </h1>
+                        <p>Teknorix is a global software development company based in India. We build amazing software solutions to help your business scale greater heights.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
+                    <li> @Html.ActionLink("View All Employees", "Index", null, null, new { @class = "btn btn-primary" })</li>
+                    <li> @Html.ActionLink("Add New Employee", "Create", null, null, new { @class = "btn btn-primary" })</li>
+
+                </ul>
+            </div>
+            <div class="col-sm-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="text-align:center">
+                        <img src="~/Content/Images/img_avatar1.png" id="EmpImg" class="media-object"><strong> Delete Emplyee Details </strong>
+                    </div>
+                    <div class="panel-body">
+                        <h3 style="text-align:center;">Are you sure you want to delete this?</h3>
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    @Html.DisplayNameFor(model => model.emp_fname) :
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.DisplayFor(model => model.emp_fname)
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    @Html.DisplayNameFor(model => model.emp_lname) :
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.DisplayFor(model => model.emp_lname)
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    @Html.DisplayNameFor(model => model.emp_gender) :
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.DisplayFor(model => model.emp_gender)
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    @Html.DisplayNameFor(model => model.emp_address) :
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.DisplayFor(model => model.emp_address)
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    @Html.DisplayNameFor(model => model.emp_phone_no) :
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.DisplayFor(model => model.emp_phone_no)
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    @Html.DisplayNameFor(model => model.emp_mobile_no) :
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.DisplayFor(model => model.emp_mobile_no)
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    @Html.DisplayNameFor(model => model.emp_desgn_id) :
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.DropDownList("emp_desgn_id", new SelectList(ViewBag.DesgnList, "Desgn_id", "Desgn_name"), new { @class = "form-control", @disabled = "disabled" })
+ 
+                                @*@Html.DropDownList("emp_desgn_id", new List<SelectListItem>
+                                    {
+                                    new SelectListItem { Text = "Trainee Software Engineer", Value = "1"},
+                                    new SelectListItem { Text = "Software Engineer", Value = "2"},
+                                    new SelectListItem { Text = "Project Lead", Value = "3"},
+                                     new SelectListItem { Text = "Senior Software Engineer", Value = "4"},
+                                      new SelectListItem { Text = "Project Manager", Value = "5"}
+                                    }, "Select Designation", new { @class = "form-control", @disabled = "disabled" })*@
+                                @*@Html.DisplayFor(model => model.emp_lname)*@
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    @Html.DisplayNameFor(model => model.dept_id) :
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.DropDownList("dept_id", new SelectList(ViewBag.DeptList, "dept_id", "dept_name"), new { @class = "form-control", @disabled = "disabled" })
+
+                                @*@Html.DropDownList("dept_id", new List<SelectListItem>
+        {
+        new SelectListItem { Text = "Application Developer", Value = "1"},
+        new SelectListItem { Text = "IT Management", Value = "2"},
+        new SelectListItem { Text = "Project Manager", Value = "3"},
+         new SelectListItem { Text = "IT Security", Value = "4"},
+          new SelectListItem { Text = "CTO", Value = "5"}
+        }, "Select Department", new { @class = "form-control", @disabled = "disabled" })*@
+
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color" style="text-align:center; margin-top:3%;">
+                                <input type="submit" value="Delete" class="btn btn-danger" />
+                                @*@Html.ActionLink("Back to List", "Index")*@
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

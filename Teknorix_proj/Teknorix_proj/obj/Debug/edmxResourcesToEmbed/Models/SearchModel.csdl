@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Tenorix_DBContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Departments" EntityType="Models.Department" />
+    <EntitySet Name="Designations" EntityType="Models.Designation" />
+    <EntitySet Name="Employees" EntityType="Models.Employee" />
+    <AssociationSet Name="FK__Employee__dept_i__5DCAEF64" Association="Models.FK__Employee__dept_i__5DCAEF64">
+      <End Role="Department_Tbl" EntitySet="Departments" />
+      <End Role="Employee_Tbl" EntitySet="Employees" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="dept_id" />
+    </Key>
+    <Property Name="dept_id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="dept_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employee_Tbl" Relationship="Models.FK__Employee__dept_i__5DCAEF64" FromRole="Department_Tbl" ToRole="Employee_Tbl" />
+  </EntityType>
+  <EntityType Name="Designation">
+    <Key>
+      <PropertyRef Name="Desgn_id" />
+    </Key>
+    <Property Name="Desgn_id" Type="Int32" Nullable="false" />
+    <Property Name="Desgn_name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="emp_id" />
+    </Key>
+    <Property Name="emp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="emp_fname" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="emp_lname" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="emp_gender" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="emp_address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="emp_phone_no" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="emp_mobile_no" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="emp_desgn_id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="dept_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Department_Tbl" Relationship="Models.FK__Employee__dept_i__5DCAEF64" FromRole="Employee_Tbl" ToRole="Department_Tbl" />
+  </EntityType>
+  <Association Name="FK__Employee__dept_i__5DCAEF64">
+    <End Type="Models.Department" Role="Department_Tbl" Multiplicity="0..1" />
+    <End Type="Models.Employee" Role="Employee_Tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department_Tbl">
+        <PropertyRef Name="dept_id" />
+      </Principal>
+      <Dependent Role="Employee_Tbl">
+        <PropertyRef Name="dept_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

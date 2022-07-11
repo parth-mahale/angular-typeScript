@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Teknorix_proj.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label>First Name: </label>
+        </th>
+        <th>
+            <label>Last Name: </label>
+            @*@Html.DisplayNameFor(model => model.emp_lname)*@
+        </th>
+        <th>
+            <label>Gender: </label>
+        </th>
+        <th>
+            <label>Addrerss: </label>
+        </th>
+        <th>
+            <label>Phone No: </label>
+        </th>
+        <th>
+            <label>Mobile No: </label>
+        </th>
+        <th>
+            <label>Designation </label>
+        </th>
+        <th>
+            <label>Department: </label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.emp_fname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emp_lname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emp_gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emp_address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emp_phone_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emp_mobile_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emp_desgn_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department_Tbl.dept_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.emp_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.emp_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.emp_id })
+        </td>
+    </tr>
+}
+
+</table>

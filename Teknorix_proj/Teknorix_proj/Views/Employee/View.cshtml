@@ -1,0 +1,95 @@
+﻿@model List<Teknorix_proj.Models.EmployeeModel>
+@*@using System.Data;*@
+@*@{
+        Layout = null;
+    }*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="~/Content/Style.css">
+
+    <style>
+        .nav > li > a:hover, .nav > li > a:focus {
+            text-decoration: none;
+            background-color: #337ab7;
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="container">
+                    <div class="jumbotron">
+                        <h1>Teknorix Technologies </h1>
+                        <p>Teknorix is a global software development company based in India. We build amazing software solutions to help your business scale greater heights.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="body-row">
+            <div class="col-sm-2">
+                <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
+                    <li> <a href="/Employee/AddDetails" class="btn btn-primary">Add New Details</a></li>
+                    @*<li><a href="#section3">Section 3</a></li>*@
+                </ul>
+            </div>
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading"> <img src="~/Content/Images/img_avatar1.png" id="EmpImg" class="media-object"> <strong>Employee Details</strong></div>
+                    <div class="panel-body">
+                        <table id="view-table" class="table table-hover table-responsive">
+                            <tr class="table-primary">
+                                <th></th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Gender</th>
+                                <th>Address</th>
+                                <th>Phone No</th>
+                                <th>Mobile No</th>
+                                <th>Designation</th>
+                                <th>Department</th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                        <tr>
+                            <td>@Html.TextBoxFor(m => item.EmpID, new { @type = "hidden", @id = "EmpID", @class = "form-control" })</td>
+                            <td>@Html.TextBoxFor(m => item.Fname, new { disabled = "true", @id = "Fname", @class = "form-control" })</td>
+                            <td>@Html.TextBoxFor(m => item.Lname, new { disabled = "true", @id = "Lname", @class = "form-control" })</td>
+                            <td>@Html.TextBoxFor(m => item.Gender, new { disabled = "true", @id = "Gender", @class = "form-control" })</td>
+                            <td>@Html.TextBoxFor(m => item.Address, new { disabled = "true", @id = "Address", @class = "form-control" })</td>
+                            <td>@Html.TextBoxFor(m => item.PhoneNumber, new { disabled = "true", @id = "PhoneNumber", @class = "form-control" })</td>
+                            <td>@Html.TextBoxFor(m => item.MobileNumber, new { disabled = "true", @id = "MobileNo", @class = "form-control" })</td>
+                            <td>@Html.TextBoxFor(m => item.Designation, new { disabled = "true", @id = "Desgn", @class = "form-control" })</td>
+                            <td>@Html.TextBoxFor(m => item.Department, new { disabled = "true", @id = "Dept", @class = "form-control" })</td>
+
+                            <td> @Html.ActionLink("Edit Record", "GetDtlsByID", new { Id = item.EmpID }, new { @class = "btn btn-warning" })</td>
+
+
+                        </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+
+
+             
+                <div>
+
+
+                </div>
+            </div>
+            <div class="col-sm-2">
+               
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
