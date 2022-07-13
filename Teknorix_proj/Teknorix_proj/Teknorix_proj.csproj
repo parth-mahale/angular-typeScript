@@ -357,6 +357,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <TypeScriptCompile Include="app\services\Emp.Service.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-component-router.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
@@ -399,6 +400,7 @@
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Employees\Index_.cshtml" />
     <Content Include="Views\Employees\_Index.cshtml" />
+    <Content Include="Views\Employees\Index - bak.cshtml" />
     <None Include="Views\Employee\view_employees.cshtml" />
   </ItemGroup>
   <PropertyGroup>

@@ -29,8 +29,13 @@ namespace Teknorix_proj
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+            "~/app/Controllers/Emp.Controller.js",
+            "~/app/Services/Emp.Emp.Service.js"
 
-            
+            ));
+
+
         }
     }
 }

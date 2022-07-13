@@ -31,16 +31,14 @@
             </div>
         </div>
     </div>
-    <div class="container" ng-app="app" ng-controller="app.emps.EmpController as vm">
-    @*<div class="container" ng-controller="app.emps.EmpController as vm">*@
-
+    <div class="container" ng-app="app" ng-controller="EmployeeDtsController">
         <div class="row" id="body-row">
 
-            @*<p>{{vm.emps | json}}</p>*@
+            @*<p>{{model | json}}</p>*@
             <div class="col-sm-2">
                 <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
                     @Html.ActionLink("Add New Details", "Create", null, null, new { @class = "btn btn-primary" })
-
+                   
                 </ul>
             </div>
             <div class="col-lg-9">
@@ -51,7 +49,7 @@
                         <div style="font-family:Arial">
                             <p>
                                 @*@using (@Html.BeginForm("Index", "Employees", FormMethod.Get))
-                                    {*@
+            {*@
                                 <b>Search By:</b>
                                 @Html.RadioButton("searchBy", "Firstname", true)<text>First name</text>
                                 @Html.RadioButton("searchBy", "LastName")<text>Last Name</text>
@@ -82,9 +80,9 @@
                                         <th>
                                             <label>Mobile No </label>
                                         </th>
-                                        @*<th>
+                                        <th>
                                             <label>Designation </label>
-                                        </th>*@
+                                        </th>
                                         <th>
                                             <label>Department </label>
                                         </th>
@@ -93,90 +91,88 @@
                                 </thead>
                                 <tbody>
                                     @*@foreach (var item in Model)
-                                        {*@
-                                    <tr ng-repeat="item in vm.emps">
+                {*@
+                                    <tr ng-repeat="item in model.data">
                                         <td>
                                             @*@Html.DisplayFor(modelItem => item.emp_fname)*@
-                                            {{item.firstName}}
+                                            {{item.emp_fname}}
                                         </td>
                                         <td>
                                             @* @Html.DisplayFor(modelItem => item.emp_lname)*@
-                                            {{item.lastName}}
+                                            {{item.emp_lname}}
                                         </td>
                                         <td>
                                             @*@Html.DisplayFor(modelItem => item.emp_gender)*@
-                                            {{item.gender}}
+                                            {{item.emp_gender}}
                                         </td>
                                         <td>
                                             @*@Html.DisplayFor(modelItem => item.emp_address)*@
-                                            {{item.address}}
+                                            {{item.emp_address}}
                                         </td>
                                         <td>
                                             @*@Html.DisplayFor(modelItem => item.emp_phone_no)*@
-                                            {{item.phoneNumber}}
+                                            {{item.emp_phone_no}}
                                         </td>
                                         <td>
                                             @*  @Html.DisplayFor(modelItem => item.emp_mobile_no)*@
-                                            {{item.mobileNumber}}
+                                            {{item.emp_mobile_no}}
                                         </td>
-                                        <!--<td>-->
+                                        <td>
                                             @*  @Html.DisplayFor(modelItem => item.emp_desgn_id)*@
-                                            <!--{{item.emp_desgn_id}}
-                                        </td>-->
+                                            {{item.emp_desgn_id}}
+                                        </td>
                                         <td>
                                             @*  @Html.DisplayFor(modelItem => item.dept_id)*@
-                                            {{item.department.departmentName}}
+                                            {{item.dept_id}}
                                         </td>
                                         <td>
-                                            <a ng-click="vm.showEmpForms(true)" class="btn btn-warning">Edit</a>
-
-                                            @*<a href="@Url.Action("Edit", "Employees")/?id = {{item.emp_id}}" class="btn btn-warning">Edit</a>*@
+                                            <a href="@Url.Action("Edit", "Employees")/?id = {{item.emp_id}}" class="btn btn-warning">Edit</a>
                                             @* @Html.ActionLink("Edit", "Edit", null, new { id = {  item.emp_id  } }, new { @class = "btn btn-warning" })*@
                                             @*@Html.ActionLink("Details", "Details", new   { id = item.emp_id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.emp_id })*@
+                        @Html.ActionLink("Delete", "Delete", new { id = item.emp_id })*@
                                         </td>
                                     </tr>
                                     @*}*@
 
-                                    <tr ng-if="vm.emps.lenght == 0">
+                                    <tr ng-if="model.emps.lenght == 0">
                                         <td colspan="8" class="text-center">no record</td>
                                     </tr>
-                                    <tr ng-if="vm.showEmp">
+                                    <tr ng-if="states.showEmpForm">
                                         <td>
-                                            <input type="text" ng-model="vm.newemp.FirstName" class="form-control" placeholder="first name" />
+                                            <input type="text" ng-model="new.emp.emp_fname" class="form-control" placeholder="first name" />
                                         </td>
                                         <td>
-                                            <input type="text" ng-model="vm.newemp.LastName" class=" form-control" placeholder="Last name" />
+                                            <input type="text" ng-model="new.emp.emp_lname"  class=" form-control" placeholder="Last name" />
                                         </td>
                                         <td>
-                                            <input type="text" ng-model="vm.newemp.Gender" class=" form-control" placeholder="Gender" />
+                                            <input type="text" ng-model="new.emp.emp_gender"  class=" form-control" placeholder="Gender" />
                                         </td>
                                         <td>
-                                            <input type="text" ng-model="vm.newemp.Address" class=" form-control" placeholder="Address" />
+                                            <input type="text" ng-model="new.emp.emp_address"  class=" form-control" placeholder="Address" />
                                         </td>
                                         <td>
-                                            <input type="text" ng-model="vm.newemp.PhoneNumber" class=" form-control" placeholder="Phone no" />
+                                            <input type="text" ng-model="new.emp.emp_phone_no"  class=" form-control" placeholder="Phone no" />
                                         </td>
                                         <td>
-                                            <input type="text" ng-model="vm.newemp.MobileNumber" class=" form-control" placeholder="Mobile No" />
-                                        </td>
-                                        @*<td>
-                                            <input type="text" ng-model="vm.newemp.emp_desgn_id" class=" form-control" placeholder="Dsg" />
-                                        </td>*@
-                                        <td>
-                                            <input type="text" ng-model="vm.newemp.DeptID" class=" form-control" placeholder="Dept name" />
+                                            <input type="text" ng-model="new.emp.emp_mobile_no"  class=" form-control" placeholder="Mobile No" />
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-primary" ng-click="vm.addEmps(vm.newemp)">Add</button>
-                                            <button type="button" class="btn btn-default" ng-click="vm.showEmpForms(false)">cancel</button>
+                                            <input type="text" ng-model="new.emp.emp_desgn_id"  class=" form-control" placeholder="Dsg" />
+                                        </td>
+                                        <td>
+                                            <input type="text" ng-model="new.emp.dept_id"  class=" form-control" placeholder="Dept name" />
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" ng-click="addEmps()">Add</button>
+                                            <button type="button" class="btn btn-default" ng-click="showEmpForms(false)">cancel</button>
                                         </td>
                                     </tr>
                                     @*<tr>
-                                            <td colspan="8">{{new.emp | json}}</td>
-                                        </tr>*@
+                                        <td colspan="8">{{new.emp | json}}</td>
+                                    </tr>*@
                                 </tbody>
                             </table>
-                            <a ng-click="vm.showEmpForms(true)" class="btn btn-primary">Add Employee</a>
+                            <a ng-click="showEmpForms(true)" class="btn btn-primary">Add Employee</a>
                         </div>
                     </div>
                 </div>
