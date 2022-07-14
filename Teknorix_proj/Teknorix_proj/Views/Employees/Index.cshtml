@@ -128,7 +128,8 @@
                                             {{item.department.departmentName}}
                                         </td>
                                         <td>
-                                            <a ng-click="vm.showEmpForms(true)" class="btn btn-warning">Edit</a>
+                                  
+                                            <a ng-click="vm.removeEmployee(item.id)" class="btn btn-warning">delete</a>
 
                                             @*<a href="@Url.Action("Edit", "Employees")/?id = {{item.emp_id}}" class="btn btn-warning">Edit</a>*@
                                             @* @Html.ActionLink("Edit", "Edit", null, new { id = {  item.emp_id  } }, new { @class = "btn btn-warning" })*@
@@ -163,12 +164,16 @@
                                         @*<td>
                                             <input type="text" ng-model="vm.newemp.emp_desgn_id" class=" form-control" placeholder="Dsg" />
                                         </td>*@
-                                        <td>
-                                            <input type="text" ng-model="vm.newemp.DeptID" class=" form-control" placeholder="Dept name" />
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary" ng-click="vm.addEmps(vm.newemp)">Add</button>
-                                            <button type="button" class="btn btn-default" ng-click="vm.showEmpForms(false)">cancel</button>
+                                    <td>
+                                        <select class="form-control" ng-model="vm.newemp.deptID">
+                                            <option value="">Select Department</option>
+                                            <option label="{{depts.departmentName}}" ng-repeat="depts in vm.departmentList" value="{{depts.deptID}}">{{depts.departmentName}}</option>
+                                        </select>
+                                        @* <input type="text" ng-model="vm.newemp.DeptID" class=" form-control" placeholder="Dept name" />*@
+                                    </td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-primary" ng-click="vm.addEmps(vm.newemp)" style=" margin-bottom: 1px;">Add</button>
+                                            <button type="button" class="btn btn-danger" ng-click="vm.showEmpForms(false)">cancel</button>
                                         </td>
                                     </tr>
                                     @*<tr>

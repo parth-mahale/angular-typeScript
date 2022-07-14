@@ -7,11 +7,16 @@
     interface IEmpScope {
 
         emps: Emp[];
+        getDepts(): ng.IPromise<Dept[]>;
+        departmentList: Dept[];
+
         newemp: Emp;
         showEmp: Boolean;
 
         getEmps(): ng.IPromise<Emp[]>;
         addEmps(newemp: Emp): ng.IPromise<Emp>;
+
+        //removeEmployee(id: Emp): ng.IPromise<Emp>;
 
         showEmpForms(show: Boolean): void;
         showEmpForm(): void;
@@ -27,9 +32,14 @@
         emp_desgn_id: string;
         dept_id: string;
     }
+    export class Dept {
+        deptid: string;
+        deptName: string;
+    }
     class EmpController implements IEmpScope {
 
         emps: Emp[];
+        departmentList: Dept[];
         newemp: Emp;
         showEmp: Boolean;
 
@@ -38,9 +48,12 @@
         // static $inject = ['$http', 'app.services.EmpService'];
 
         static $inject = ['$http'];
+       
+
         constructor(private $http: ng.IHttpService) {
             //constructor(private $http: ng.IHttpService, private empService: services.IEmpsService) {
             this.getEmps();
+            this.getDepts();
             this.showEmp = false;
         }
        
@@ -54,6 +67,12 @@
                     this.emps = <Emp[]>response.data;
                 });
         }
+        getDepts(): ng.IPromise<Dept[]> {
+            return this.$http.get('https://localhost:44367/api/Employee/GetDrpDwnList')
+                .then((response: ng.IHttpPromiseCallbackArg<Dept[]>): any => {
+                    this.departmentList = <Dept[]>response.data;
+                });
+        }
         addEmps(newemp: Emp): ng.IPromise<Emp> {
             return this.$http.post('https://localhost:44367/api/Employee/AddEmployees', newemp)
                 .then((data: ng.IHttpPromiseCallbackArg<Emp>): any => {
@@ -62,8 +81,15 @@
                     this.emps.push(<Emp>data);
                     return <Emp>data;
                 });
-
-           
+        }
+        removeEmployee(id)  {
+            return this.$http.post('https://localhost:44367/api/Employee/DeleteEmployeeDtls', id)
+                .then((data: ng.IHttpPromiseCallbackArg<Emp>): any => {
+                    //  this.showEmp = false;
+                    //   this.newemp = <any>{};
+                    //   this.emps.push(<Emp>data);
+                    return <Emp>data;
+                });
         }
         //addEmps(emp: Emp): ng.IPromise<Emp> {
         //    return this.$http.post('https://localhost:44367/api/Employee/AddEmployees', emps)
